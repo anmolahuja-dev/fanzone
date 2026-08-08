@@ -1,0 +1,426 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create multi-module Maven project structure": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166765
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183199881
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786184637463
+      }
+    ],
+    "1.2 Set up Docker Compose for local development": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166797
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786184644190
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786185087269
+      }
+    ],
+    "1.3 Create fanzone-common shared library": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166822
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786184644957
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786185087774
+      }
+    ],
+    "1.4 Set up PostgreSQL schema with Liquibase": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166842
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786185095471
+      }
+    ],
+    "1.5 Configure Spring Security and JWT infrastructure": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166862
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786185096819
+      }
+    ],
+    "1.6 Configure Kafka infrastructure": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166881
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786185096836
+      }
+    ],
+    "1.7 Configure Redis": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166900
+      },
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786185097456
+      }
+    ],
+    "2.1 Implement AuthRepository (JPA)": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166919
+      }
+    ],
+    "2.2 Implement AuthService with validation and lockout": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166938
+      }
+    ],
+    "2.3 Implement OAuth2 integration (Google + Apple)": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166962
+      }
+    ],
+    "2.4 Implement email verification flow": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166980
+      }
+    ],
+    "2.5 Implement AuthController REST endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183166999
+      }
+    ],
+    "3.1 Implement onboarding endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167017
+      }
+    ],
+    "3.2 Seed club and player data": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167036
+      }
+    ],
+    "4. Checkpoint — Ensure all tests pass": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167054
+      }
+    ],
+    "5.1 Implement FeedScorer": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167071
+      }
+    ],
+    "5.3 Implement FeedRepository with pagination": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167089
+      }
+    ],
+    "5.4 Implement Redis feed caching": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167109
+      }
+    ],
+    "5.7 Implement FeedController": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167128
+      }
+    ],
+    "6.1 Implement PostValidator": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167147
+      }
+    ],
+    "6.3 Implement PostService and S3 image upload": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167164
+      }
+    ],
+    "6.5 Implement PostController": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167181
+      }
+    ],
+    "7.1 Implement CommentService with nesting and validation": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167201
+      }
+    ],
+    "7.5 Implement Comment endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167220
+      }
+    ],
+    "8.1 Implement ReputationService": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167239
+      }
+    ],
+    "8.2 Implement Kafka consumer for reputation events": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167259
+      }
+    ],
+    "9. Checkpoint — Ensure all tests pass": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167280
+      }
+    ],
+    "10.1 Implement FollowRepository and FollowService": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167297
+      }
+    ],
+    "10.3 Implement Profile endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167316
+      }
+    ],
+    "11.1 Implement MatchThreadService with phase management": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167335
+      }
+    ],
+    "11.5 Implement player ratings and MOTM calculation": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167354
+      }
+    ],
+    "11.8 Implement WebSocket (STOMP) for live match threads": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167373
+      }
+    ],
+    "11.9 Implement Match Thread REST endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167393
+      }
+    ],
+    "12.1 Implement OpenAI moderation client": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167411
+      }
+    ],
+    "12.2 Implement moderation REST endpoint": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167429
+      }
+    ],
+    "12.3 Implement async moderation consumer": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167448
+      }
+    ],
+    "13.1 Implement Firebase Cloud Messaging (FCM) client": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167469
+      }
+    ],
+    "13.2 Implement NotificationService with preference enforcement": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167496
+      }
+    ],
+    "13.3 Implement Kafka consumers for notification events": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167515
+      }
+    ],
+    "13.6 Implement Activity Feed endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167534
+      }
+    ],
+    "13.7 Implement notification preferences endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167553
+      }
+    ],
+    "14. Checkpoint — Ensure all tests pass": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167573
+      }
+    ],
+    "15.1 Implement Club Hub endpoint": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167599
+      }
+    ],
+    "15.2 Implement club theme endpoint": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167620
+      }
+    ],
+    "15.3 Implement settings endpoints": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167638
+      }
+    ],
+    "16.1 Configure GitLab CI/CD pipeline": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167657
+      }
+    ],
+    "16.2 Create Helm charts": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167679
+      }
+    ],
+    "16.3 Wire all services end-to-end": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167699
+      }
+    ],
+    "16.4 Write integration tests with Testcontainers": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167719
+      }
+    ],
+    "17.1 Write K6 load tests": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167738
+      }
+    ],
+    "17.2 Performance optimization": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167757
+      }
+    ],
+    "17.3 Observability setup": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167777
+      }
+    ],
+    "18. Final checkpoint — Ensure all tests pass": [
+      {
+        "executionId": "c6387150-de13-4516-b6c1-51865d454c85",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786183167794
+      }
+    ]
+  }
+}
