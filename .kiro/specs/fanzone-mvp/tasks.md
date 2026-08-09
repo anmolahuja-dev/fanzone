@@ -6,7 +6,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
 
 ## Tasks
 
-- [ ] 1. Set up project infrastructure and common library
+- [x] 1. Set up project infrastructure and common library
   - [x] 1.1 Create multi-module Maven project structure
     - Initialize parent POM with Spring Boot 3.x parent, Java 21
     - Create modules: `fanzone-common`, `auth-service`, `feed-service`, `post-service`, `match-thread-service`, `reputation-service`, `notification-service`, `moderation-service`
@@ -30,7 +30,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Add enums: `PostType`, `MatchPhase`, `ReputationLevel`, `ReputationEvent`, `NotificationType`
     - _Requirements: 11.8, 11.9, 11.10, 11.11_
 
-  - [ ] 1.4 Set up PostgreSQL schema with Liquibase
+  - [x] 1.4 Set up PostgreSQL schema with Liquibase
     - Create Liquibase changelog master file per service
     - Implement all 18 tables as defined in design (users, clubs, players, user_favorite_players, user_interests, posts, poll_options, poll_votes, comments, comment_upvotes, post_upvotes, matches, player_ratings, follows, notifications, notification_preferences, reports, match_thread_comments, goal_reactions, activity_feed)
     - Create the `compute_feed_score()` PostgreSQL function
@@ -38,14 +38,14 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Create indexes as defined in design for feed, comments, follows, activity_feed
     - _Requirements: 5.1, 7.6, 9.5, 11.12_
 
-  - [ ] 1.5 Configure Spring Security and JWT infrastructure
+  - [x] 1.5 Configure Spring Security and JWT infrastructure
     - Create `SecurityConfig` with JWT filter chain (stateless session, CORS, CSRF disabled for API)
     - Implement `JwtTokenProvider`: generate access token (1hr expiry) and refresh token (7-day expiry)
     - Implement `JwtAuthenticationFilter` extracting principal from Authorization header
     - Configure public endpoints (auth routes, health checks) vs authenticated endpoints
     - _Requirements: 2.5, 2.6_
 
-  - [ ] 1.6 Configure Kafka infrastructure
+  - [x] 1.6 Configure Kafka infrastructure
     - Create Kafka producer configuration with JSON serializer
     - Create Kafka consumer configuration with consumer groups per service
     - Define topic names as constants in common library
@@ -53,20 +53,20 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Implement retry template: 3 retries with exponential backoff before DLQ
     - _Requirements: N/A (infrastructure)_
 
-  - [ ] 1.7 Configure Redis
+  - [x] 1.7 Configure Redis
     - Set up Spring Data Redis with Lettuce client
     - Create Redis configuration for connection pooling
     - Implement cache key naming conventions: `feed:{userId}:{tab}`, `rate:{matchId}:{userId}`
     - _Requirements: N/A (infrastructure)_
 
-- [ ] 2. Implement authentication and session management (auth-service)
-  - [ ] 2.1 Implement AuthRepository (JPA)
+- [x] 2. Implement authentication and session management (auth-service)
+  - [x] 2.1 Implement AuthRepository (JPA)
     - Create `UserEntity` JPA entity mapping to `users` table
     - Create `UserRepository` extending `JpaRepository` with `findByEmail()`, `findByUsername()`
     - Implement password hashing with BCrypt (Spring Security `PasswordEncoder`)
     - _Requirements: 1.1, 2.1_
 
-  - [ ] 2.2 Implement AuthService with validation and lockout
+  - [x] 2.2 Implement AuthService with validation and lockout
     - Create `AuthService` with `register()`, `login()`, `oauthLogin()`, `refreshToken()`
     - Email validation: exactly one `@` followed by domain with at least one dot
     - Password validation: 8-128 chars, 1 uppercase, 1 lowercase, 1 digit
@@ -75,21 +75,21 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Generic error messages: never reveal which field (email/password) is incorrect
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7_
 
-  - [ ] 2.3 Implement OAuth2 integration (Google + Apple)
+  - [x] 2.3 Implement OAuth2 integration (Google + Apple)
     - Create `GoogleOAuthClient` using Spring WebClient to verify Google ID tokens
     - Create `AppleOAuthClient` to verify Apple Sign In tokens (JWT validation with Apple public keys)
     - Map OAuth profile data (email, display name) to user account creation/login
     - Handle provider unavailability with appropriate error response
     - _Requirements: 1.2, 1.3, 1.6, 2.2, 2.3, 2.7_
 
-  - [ ] 2.4 Implement email verification flow
+  - [x] 2.4 Implement email verification flow
     - Generate verification token (UUID) with 24-hour expiry on registration
     - Send verification email (placeholder for SMTP service in MVP)
     - Implement verification endpoint: validate token, mark `email_verified = true`
     - Enforce limited access for unverified users (read-only, no post/comment creation)
     - _Requirements: 1.1, 1.7_
 
-  - [ ] 2.5 Implement AuthController REST endpoints
+  - [x] 2.5 Implement AuthController REST endpoints
     - `POST /api/v1/auth/register` — with `@Valid RegisterRequest`
     - `POST /api/v1/auth/login` — with `@Valid LoginRequest`
     - `POST /api/v1/auth/oauth/google` — with `@Valid OAuthRequest`
@@ -100,15 +100,15 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - `POST /api/v1/auth/resend-verification` — rate limited
     - _Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3_
 
-  - [ ]* 2.6 Write property tests for email validation (Property 1)
+  - [x]* 2.6 Write property tests for email validation (Property 1)
     - Generate random strings: accept iff exactly one `@` + domain with at least one dot
     - **Validates: Requirements 1.5**
 
-  - [ ]* 2.7 Write property tests for session validity (Property 23)
+  - [x]* 2.7 Write property tests for session validity (Property 23)
     - Generate random timestamps relative to last activity: valid iff within 7 days
     - **Validates: Requirements 2.5, 2.6**
 
-  - [ ]* 2.8 Write property tests for account lockout (Property 24)
+  - [x]* 2.8 Write property tests for account lockout (Property 24)
     - Generate random failed attempt counts (0-10): locked iff attempts >= 5, lockout = 15 min
     - **Validates: Requirements 2.4**
 

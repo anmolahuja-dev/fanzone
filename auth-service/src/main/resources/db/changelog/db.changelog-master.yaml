@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: changes/002-email-verification-tokens.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changes/003-seed-clubs.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changes/004-seed-players.yaml
+      relativeToChangelogFile: true

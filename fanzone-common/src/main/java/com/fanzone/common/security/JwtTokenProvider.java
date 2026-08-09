@@ -31,12 +31,17 @@ public class JwtTokenProvider {
     }
 
     public String generateAccessToken(UUID userId, String email, String username, UUID favoriteClubId) {
+        return generateAccessToken(userId, email, username, favoriteClubId, false);
+    }
+
+    public String generateAccessToken(UUID userId, String email, String username, UUID favoriteClubId, boolean emailVerified) {
         Instant now = Instant.now();
         return Jwts.builder()
                 .subject(userId.toString())
                 .claim("email", email)
                 .claim("username", username)
                 .claim("favoriteClubId", favoriteClubId != null ? favoriteClubId.toString() : null)
+                .claim("emailVerified", emailVerified)
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plus(accessTokenExpiry)))
                 .signWith(secretKey)
@@ -61,7 +66,9 @@ public class JwtTokenProvider {
         String username = claims.get("username", String.class);
         String clubIdStr = claims.get("favoriteClubId", String.class);
         UUID favoriteClubId = clubIdStr != null ? UUID.fromString(clubIdStr) : null;
-        return new UserPrincipal(userId, email, username, favoriteClubId);
+        Boolean emailVerified = claims.get("emailVerified", Boolean.class);
+        return new UserPrincipal(userId, email, username, favoriteClubId,
+                emailVerified != null && emailVerified);
     }
 
     public UUID extractUserId(String token) {

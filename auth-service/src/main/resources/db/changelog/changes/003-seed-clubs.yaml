@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-seed-clubs
+      author: fanzone
+      comment: "Seed 20 top European clubs with theme colors for club-adaptive theming"
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO clubs (id, name, logo_url, league, primary_color, secondary_color) VALUES
+              ('10000000-0000-0000-0000-000000000001', 'Real Madrid', '/logos/real-madrid.png', 'La Liga', '#FFFFFF', '#00529F'),
+              ('10000000-0000-0000-0000-000000000002', 'Barcelona', '/logos/barcelona.png', 'La Liga', '#A50044', '#004D98'),
+              ('10000000-0000-0000-0000-000000000003', 'Manchester City', '/logos/manchester-city.png', 'Premier League', '#6CABDD', '#1C2C5B'),
+              ('10000000-0000-0000-0000-000000000004', 'Manchester United', '/logos/manchester-united.png', 'Premier League', '#DA291C', '#FBE122'),
+              ('10000000-0000-0000-0000-000000000005', 'Liverpool', '/logos/liverpool.png', 'Premier League', '#C8102E', '#00B2A9'),
+              ('10000000-0000-0000-0000-000000000006', 'Arsenal', '/logos/arsenal.png', 'Premier League', '#EF0107', '#063672'),
+              ('10000000-0000-0000-0000-000000000007', 'Chelsea', '/logos/chelsea.png', 'Premier League', '#034694', '#DBA111'),
+              ('10000000-0000-0000-0000-000000000008', 'Tottenham', '/logos/tottenham.png', 'Premier League', '#132257', '#FFFFFF'),
+              ('10000000-0000-0000-0000-000000000009', 'Bayern Munich', '/logos/bayern-munich.png', 'Bundesliga', '#DC052D', '#0066B2'),
+              ('10000000-0000-0000-0000-000000000010', 'Borussia Dortmund', '/logos/borussia-dortmund.png', 'Bundesliga', '#FDE100', '#000000'),
+              ('10000000-0000-0000-0000-000000000011', 'PSG', '/logos/psg.png', 'Ligue 1', '#004170', '#DA291C'),
+              ('10000000-0000-0000-0000-000000000012', 'Juventus', '/logos/juventus.png', 'Serie A', '#000000', '#FFFFFF'),
+              ('10000000-0000-0000-0000-000000000013', 'AC Milan', '/logos/ac-milan.png', 'Serie A', '#FB090B', '#000000'),
+              ('10000000-0000-0000-0000-000000000014', 'Inter Milan', '/logos/inter-milan.png', 'Serie A', '#010E80', '#000000'),
+              ('10000000-0000-0000-0000-000000000015', 'Napoli', '/logos/napoli.png', 'Serie A', '#12A0D7', '#FFFFFF'),
+              ('10000000-0000-0000-0000-000000000016', 'Atletico Madrid', '/logos/atletico-madrid.png', 'La Liga', '#CB3524', '#272E61'),
+              ('10000000-0000-0000-0000-000000000017', 'Ajax', '/logos/ajax.png', 'Eredivisie', '#D2122E', '#FFFFFF'),
+              ('10000000-0000-0000-0000-000000000018', 'Porto', '/logos/porto.png', 'Primeira Liga', '#003893', '#FFFFFF'),
+              ('10000000-0000-0000-0000-000000000019', 'Benfica', '/logos/benfica.png', 'Primeira Liga', '#FF0000', '#FFFFFF'),
+              ('10000000-0000-0000-0000-000000000020', 'Celtic', '/logos/celtic.png', 'Scottish Premiership', '#008000', '#FFFFFF');
+      rollback:
+        - sql:
+            sql: |
+              DELETE FROM clubs WHERE id IN (
+                '10000000-0000-0000-0000-000000000001',
+                '10000000-0000-0000-0000-000000000002',
+                '10000000-0000-0000-0000-000000000003',
+                '10000000-0000-0000-0000-000000000004',
+                '10000000-0000-0000-0000-000000000005',
+                '10000000-0000-0000-0000-000000000006',
+                '10000000-0000-0000-0000-000000000007',
+                '10000000-0000-0000-0000-000000000008',
+                '10000000-0000-0000-0000-000000000009',
+                '10000000-0000-0000-0000-000000000010',
+                '10000000-0000-0000-0000-000000000011',
+                '10000000-0000-0000-0000-000000000012',
+                '10000000-0000-0000-0000-000000000013',
+                '10000000-0000-0000-0000-000000000014',
+                '10000000-0000-0000-0000-000000000015',
+                '10000000-0000-0000-0000-000000000016',
+                '10000000-0000-0000-0000-000000000017',
+                '10000000-0000-0000-0000-000000000018',
+                '10000000-0000-0000-0000-000000000019',
+                '10000000-0000-0000-0000-000000000020'
+              );
