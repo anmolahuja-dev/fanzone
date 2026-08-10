@@ -240,6 +240,11 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276122213
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786276755862
       }
     ],
     "3.2 Seed club and player data": [
@@ -257,6 +262,11 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276123073
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786276756420
       }
     ],
     "4. Checkpoint — Ensure all tests pass": [
@@ -281,6 +291,16 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276057246
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786276769168
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277091840
       }
     ],
     "5.3 Implement FeedRepository with pagination": [
@@ -293,6 +313,16 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276057271
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277114641
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277471388
       }
     ],
     "5.4 Implement Redis feed caching": [
@@ -305,6 +335,16 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276057299
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277115494
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277471838
       }
     ],
     "5.7 Implement FeedController": [
@@ -317,6 +357,11 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276057324
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277479320
       }
     ],
     "6.1 Implement PostValidator": [
@@ -329,6 +374,11 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276057347
+      },
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277479990
       }
     ],
     "6.3 Implement PostService and S3 image upload": [
@@ -760,6 +810,41 @@
         "executionId": "1b974860-74c6-49b5-8008-948a6a032af4",
         "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
         "timestamp": 1786276115501
+      }
+    ],
+    "3. Implement onboarding (clubs, players, interests)": [
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786276756451
+      }
+    ],
+    "5.2 Write property tests for feed scoring (Property 2)": [
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277105717
+      }
+    ],
+    "5.5 Write property tests for Club tab filtering (Property 3)": [
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277113045
+      }
+    ],
+    "5.6 Write property tests for Following tab filtering (Property 4)": [
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277113857
+      }
+    ],
+    "6.2 Write property tests for post content validation (Property 5)": [
+      {
+        "executionId": "ae3f9172-7551-4c93-81be-1553d9ccfb92",
+        "chatSessionId": "sess_974f0bc1-540c-4ef3-9423-f2202004f87f",
+        "timestamp": 1786277481140
       }
     ]
   }

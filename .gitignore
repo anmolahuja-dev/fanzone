@@ -20,7 +20,13 @@ Thumbs.db
 .env
 *.log
 
+# Local Maven repository (build script uses this)
+.m2/
+
 # Docker volumes
 postgres_data/
 redis_data/
 kafka_data/
+
+# jqwik test databases
+.jqwik-database

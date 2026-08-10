@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:fanzone_notification_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  kafka:
+    bootstrap-servers: localhost:9092
+    listener:
+      auto-startup: false
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+
+server:
+  port: 0
+
+fanzone:
+  jwt:
+    secret: test-secret-key-that-is-at-least-256-bits-long-for-hs256-algorithm-testing
+    access-token-expiry: PT1H
+    refresh-token-expiry: P7D

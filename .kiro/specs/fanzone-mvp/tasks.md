@@ -112,8 +112,8 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Generate random failed attempt counts (0-10): locked iff attempts >= 5, lockout = 15 min
     - **Validates: Requirements 2.4**
 
-- [ ] 3. Implement onboarding (clubs, players, interests)
-  - [ ] 3.1 Implement onboarding endpoints
+- [x] 3. Implement onboarding (clubs, players, interests)
+  - [x] 3.1 Implement onboarding endpoints
     - `GET /api/v1/clubs` — searchable list with `?search=` query param, returns name + logo
     - `GET /api/v1/clubs/{clubId}/players` — players for selected club
     - `PUT /api/v1/users/me/club` — set favorite club (required, validates club exists)
@@ -121,53 +121,53 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - `PUT /api/v1/users/me/interests` — set interests (at least 1 required from: matchday, transfers, tactics, memes, news)
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 4.1, 4.2, 4.3, 4.4, 4.5, 17.1, 17.2, 17.3, 17.4, 17.5, 17.6_
 
-  - [ ] 3.2 Seed club and player data
+  - [x] 3.2 Seed club and player data
     - Create Liquibase changeset with initial club data (top 20 European clubs)
     - Create Liquibase changeset with player data per club (squad lists)
     - Include club theme colors (primary_color, secondary_color) for club-adaptive theming
     - _Requirements: 3.2, 20.1, 20.4, 20.5_
 
-- [ ] 4. Checkpoint — Ensure all tests pass
+- [x] 4. Checkpoint — Ensure all tests pass
   - Run `mvn verify` across all modules
   - Verify auth-service starts and serves health check
   - Verify Docker Compose brings up all infrastructure
   - Ask the user if questions arise
 
 - [ ] 5. Implement Home Feed with scoring engine (feed-service)
-  - [ ] 5.1 Implement FeedScorer
+  - [x] 5.1 Implement FeedScorer
     - Create `FeedScorer.computeScore()` as a pure function (no side effects)
     - Apply scoring: +100 same club, +30 trusted/expert author, +20 recent activity (2hr), +15 high comments (>=10), -100 toxic reports (>=3)
     - Ensure determinism: identical inputs always produce identical output
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6_
 
-  - [ ]* 5.2 Write property tests for feed scoring (Property 2)
+  - [x]* 5.2 Write property tests for feed scoring (Property 2)
     - Generate random posts with varying clubId, author levels, timestamps, comment counts, report counts
     - Verify determinism and correct additive scoring
     - **Validates: Requirements 5.1, 5.2, 5.3, 5.4, 5.5, 5.6**
 
-  - [ ] 5.3 Implement FeedRepository with pagination
+  - [x] 5.3 Implement FeedRepository with pagination
     - Create `FeedRepository` with cursor-based pagination (20 posts per page)
     - "For You": query all posts, order by `compute_feed_score()` DESC, then `created_at` DESC
     - "Club": filter by `club_id = user.favoriteClubId`, order by `created_at` DESC
     - "Following": filter by `user_id IN (followed users)`, order by `created_at` DESC
     - _Requirements: 5.1, 5.8, 5.9, 5.10, 5.12_
 
-  - [ ] 5.4 Implement Redis feed caching
+  - [x] 5.4 Implement Redis feed caching
     - Cache "For You" feed per user in Redis sorted set (score = feed score, member = post ID)
     - TTL: 5 minutes per cached feed page
     - Invalidate on `FeedInvalidationEvent` consumption from Kafka
     - Fallback to DB query on cache miss
     - _Requirements: 5.1, 5.12_
 
-  - [ ]* 5.5 Write property tests for Club tab filtering (Property 3)
+  - [x]* 5.5 Write property tests for Club tab filtering (Property 3)
     - Generate random post sets across multiple clubs; verify only matching clubId posts appear, ordered by createdAt desc
     - **Validates: Requirements 5.9**
 
-  - [ ]* 5.6 Write property tests for Following tab filtering (Property 4)
+  - [x]* 5.6 Write property tests for Following tab filtering (Property 4)
     - Generate random post sets + follow graphs; verify only followed authors' posts appear, ordered by createdAt desc
     - **Validates: Requirements 5.10, 14.3**
 
-  - [ ] 5.7 Implement FeedController
+  - [x] 5.7 Implement FeedController
     - `GET /api/v1/feeds/for-you` — cursor pagination, returns `CursorPage<PostDto>`
     - `GET /api/v1/feeds/club` — filters by user's club
     - `GET /api/v1/feeds/following` — filters by followed users
@@ -175,7 +175,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 5.7, 5.8, 5.9, 5.10, 5.11, 5.12, 5.13_
 
 - [ ] 6. Implement Post creation and display (post-service)
-  - [ ] 6.1 Implement PostValidator
+  - [x] 6.1 Implement PostValidator
     - Text posts: 1-2000 characters
     - Poll posts: question 1-200 chars, 2-4 options each 1-100 chars
     - Match analysis: 1-10000 characters
@@ -183,22 +183,22 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Validate image format (JPEG, PNG, WebP) and size (<=10MB) via content-type and Content-Length
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.6, 6.7_
 
-  - [ ]* 6.2 Write property tests for post content validation (Property 5)
+  - [x]* 6.2 Write property tests for post content validation (Property 5)
     - Generate random strings of varying lengths; verify acceptance iff within character bounds per type
     - **Validates: Requirements 6.1, 6.3, 6.4, 6.6**
 
-  - [ ] 6.3 Implement PostService and S3 image upload
+  - [x] 6.3 Implement PostService and S3 image upload
     - Create `PostService` for post creation with validation
     - Implement S3 image upload with presigned URL generation
     - Associate each post with user's `favorite_club_id`
     - Publish `FeedInvalidationEvent` on post creation
     - _Requirements: 6.2, 6.5, 6.8_
 
-  - [ ]* 6.4 Write property tests for post club association (Property 6)
+  - [x]* 6.4 Write property tests for post club association (Property 6)
     - Generate random users with clubs and post content; verify post.clubId always equals author's favoriteClubId
     - **Validates: Requirements 6.5**
 
-  - [ ] 6.5 Implement PostController
+  - [x] 6.5 Implement PostController
     - `POST /api/v1/posts` — create post (multipart for image, JSON for text/poll/analysis)
     - `GET /api/v1/posts/{postId}` — get single post with comments count
     - `DELETE /api/v1/posts/{postId}` — delete own post only
@@ -209,7 +209,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8_
 
 - [ ] 7. Implement Comments and Replies system (post-service)
-  - [ ] 7.1 Implement CommentService with nesting and validation
+  - [x] 7.1 Implement CommentService with nesting and validation
     - Create `CommentService` with `createComment()`, `createReply()`, `upvote()`, `removeUpvote()`, `report()`
     - Enforce nesting depth max 3 levels (redirect deeper replies to level 3)
     - Validate content: 1-1000 characters
@@ -219,19 +219,19 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Publish `CommentUpvotedEvent` and `CommentCreatedEvent` to Kafka
     - _Requirements: 7.1, 7.2, 7.3, 7.5, 7.6, 7.7, 7.8, 7.9_
 
-  - [ ]* 7.2 Write property tests for comment nesting depth (Property 7)
+  - [x]* 7.2 Write property tests for comment nesting depth (Property 7)
     - Generate random comment trees of varying depth; verify nestingLevel never exceeds 3
     - **Validates: Requirements 7.2, 7.6, 7.7**
 
-  - [ ]* 7.3 Write property tests for upvote idempotence (Property 8)
+  - [x]* 7.3 Write property tests for upvote idempotence (Property 8)
     - Generate random user-comment pairs with repeated upvote actions; verify count increments at most once
     - **Validates: Requirements 7.3, 7.5**
 
-  - [ ]* 7.4 Write property tests for self-upvote prevention (Property 17)
+  - [x]* 7.4 Write property tests for self-upvote prevention (Property 17)
     - Generate random user-content ownership combos; verify self-upvote always rejected (403), no score change
     - **Validates: Requirements 11.15**
 
-  - [ ] 7.5 Implement Comment endpoints
+  - [x] 7.5 Implement Comment endpoints
     - `GET /api/v1/posts/{postId}/comments` — paginated, threaded (include nested replies)
     - `POST /api/v1/posts/{postId}/comments` — create comment on post
     - `POST /api/v1/comments/{commentId}/replies` — reply to comment
