@@ -1,0 +1,23 @@
+# Test profile for feed-service unit tests.
+# Full integration tests (context load with Kafka/Redis) require Docker Compose infrastructure.
+spring:
+  datasource:
+    url: jdbc:h2:mem:fanzone_feed_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+server:
+  port: 0
+
+fanzone:
+  jwt:
+    secret: test-secret-key-that-is-at-least-256-bits-long-for-hs256-algorithm-testing
+    access-token-expiry: PT1H
+    refresh-token-expiry: P7D

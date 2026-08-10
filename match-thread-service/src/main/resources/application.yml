@@ -24,7 +24,7 @@ spring:
           max-active: 8
           max-idle: 8
           min-idle: 2
-          max-wait: 2000ms
+          max-wait: 2000
 
 server:
   port: 8084
