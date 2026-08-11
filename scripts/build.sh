@@ -18,6 +18,12 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+# Ensure Java 21 is used (via sdkman or explicit path)
+if [ -d "$HOME/.sdkman/candidates/java/21.0.5-tem" ]; then
+    export JAVA_HOME="$HOME/.sdkman/candidates/java/21.0.5-tem"
+    export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
 # Use project-local settings.xml to avoid global corporate repo interference
 MVN_SETTINGS="-s $PROJECT_DIR/.m2/settings.xml"
 

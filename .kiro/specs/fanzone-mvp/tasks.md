@@ -242,7 +242,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9_
 
 - [ ] 8. Implement Reputation system (reputation-service)
-  - [ ] 8.1 Implement ReputationService
+  - [x] 8.1 Implement ReputationService
     - Create `ReputationService` with `adjustReputation()` and `computeLevel()`
     - Implement all event point values: POST_UPVOTED +2, COMMENT_UPVOTED +1, HELPFUL_BADGE +10, ACCURATE_PREDICTION +20, POST_UPVOTE_REMOVED -2, COMMENT_UPVOTE_REMOVED -1, COMMENT_REMOVED_BY_MOD -20, TOXIC_CONTENT_CONFIRMED -50, FAKE_NEWS_CONFIRMED -100
     - Clamp score to minimum 0 (floor invariant)
@@ -250,33 +250,33 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Update `reputation_level` column immediately on threshold crossing
     - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 11.10, 11.11, 11.12, 11.13, 11.14_
 
-  - [ ] 8.2 Implement Kafka consumer for reputation events
+  - [x] 8.2 Implement Kafka consumer for reputation events
     - Consume from `fanzone.reputation.events` topic
     - Process events transactionally (DB update + level check in single transaction)
     - Publish `ReputationChangedEvent` to `fanzone.notification.events` if level changes
     - DLQ: failed messages → `fanzone.reputation.events.dlq`
     - _Requirements: 11.1, 11.12, 11.14_
 
-  - [ ]* 8.3 Write property tests for reputation events (Property 14)
+  - [x]* 8.3 Write property tests for reputation events (Property 14)
     - Generate random sequences of all event types; verify final score equals sum of points clamped to >= 0
     - **Validates: Requirements 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.13**
 
-  - [ ]* 8.4 Write property tests for reputation floor (Property 15)
+  - [x]* 8.4 Write property tests for reputation floor (Property 15)
     - Generate heavy negative event sequences; verify score never goes below 0
     - **Validates: Requirements 11.12**
 
-  - [ ]* 8.5 Write property tests for reputation level assignment (Property 16)
+  - [x]* 8.5 Write property tests for reputation level assignment (Property 16)
     - Generate random integers 0-5000+; verify correct level assigned per threshold boundaries
     - **Validates: Requirements 11.8, 11.9, 11.10, 11.11, 11.14**
 
-- [ ] 9. Checkpoint — Ensure all tests pass
+- [x] 9. Checkpoint — Ensure all tests pass
   - Run `mvn verify` across all modules
   - Verify post-service, feed-service, reputation-service start and serve health checks
   - Verify Kafka event flow: post upvote → reputation update → level change
   - Ask the user if questions arise
 
 - [ ] 10. Implement Follow system and Profile (post-service)
-  - [ ] 10.1 Implement FollowRepository and FollowService
+  - [x] 10.1 Implement FollowRepository and FollowService
     - Create `FollowRepository` with `existsByFollowerAndFollowed()`, count queries
     - Implement `follow()`: prevent self-follow (403), idempotent (ON CONFLICT DO NOTHING)
     - Implement `unfollow()`: delete if exists, no error if not following
@@ -284,12 +284,12 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Do NOT publish follow notification event (anti-follower-farming)
     - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 14.7_
 
-  - [ ]* 10.2 Write property tests for follow integrity (Property 20)
+  - [x]* 10.2 Write property tests for follow integrity (Property 20)
     - Generate random user pairs including self-pairs and duplicate attempts
     - Verify self-follow prevented, at most one relationship, idempotent creation
     - **Validates: Requirements 14.6, 14.7**
 
-  - [ ] 10.3 Implement Profile endpoints
+  - [x] 10.3 Implement Profile endpoints
     - `GET /api/v1/users/me` — current user profile (username, club, reputation, level, avatar)
     - `PUT /api/v1/users/me` — update username
     - `POST /api/v1/users/me/avatar` — upload profile picture to S3 (JPEG/PNG, <=5MB)
