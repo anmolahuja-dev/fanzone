@@ -1,0 +1,27 @@
+# Staging environment overrides
+global:
+  image:
+    pullPolicy: Always
+
+auth-service:
+  replicaCount: 1
+
+feed-service:
+  replicaCount: 1
+
+post-service:
+  replicaCount: 1
+
+match-thread-service:
+  replicaCount: 1
+
+ingress:
+  hosts:
+    - host: api-staging.fanzone.dev
+      paths:
+        - path: /
+          service: auth-service
+  tls:
+    - secretName: fanzone-staging-tls
+      hosts:
+        - api-staging.fanzone.dev

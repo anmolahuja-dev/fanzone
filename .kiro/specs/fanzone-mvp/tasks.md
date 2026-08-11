@@ -455,7 +455,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 19.3, 19.6, 20.6_
 
 - [ ] 16. Integration, CI/CD, and deployment setup
-  - [ ] 16.1 Configure GitLab CI/CD pipeline
+  - [x] 16.1 Configure GitLab CI/CD pipeline
     - Create `.gitlab-ci.yml` with stages: build, test, package, deploy
     - Build stage: `mvn clean compile` per service
     - Test stage: `mvn verify` with Testcontainers (PostgreSQL, Redis, Kafka)
@@ -463,7 +463,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Deploy stage: Helm upgrade to target environment
     - _Requirements: N/A (infrastructure)_
 
-  - [ ] 16.2 Create Helm charts
+  - [x] 16.2 Create Helm charts
     - Create umbrella Helm chart in `helm/fanzone/`
     - Sub-charts per service with Deployment, Service, ConfigMap, HPA
     - External secrets reference (vault integration for DB credentials, JWT secret, OpenAI key, FCM key)
@@ -471,7 +471,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Values files: `values-dev.yaml`, `values-staging.yaml`
     - _Requirements: N/A (infrastructure)_
 
-  - [ ] 16.3 Wire all services end-to-end
+  - [x] 16.3 Wire all services end-to-end
     - Verify inter-service communication: post-service → moderation-service (REST with circuit breaker)
     - Verify Kafka event flows: post events → reputation, notification, feed invalidation
     - Verify WebSocket broadcasting across multiple match-thread-service instances (Redis pub/sub)
@@ -479,7 +479,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Verify club theme changes propagate correctly
     - _Requirements: 5.3, 11.14, 14.3, 20.6_
 
-  - [ ] 16.4 Write integration tests with Testcontainers
+  - [x] 16.4 Write integration tests with Testcontainers
     - Auth flow: register → verify email → login → JWT token → access protected endpoint
     - Post flow: create post → appears in feed → comment → upvote → reputation update (Kafka)
     - Match thread flow: join → live comments (WebSocket) → player ratings → MOTM display
@@ -488,28 +488,28 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 1.1, 3.1, 5.1, 9.1, 10.3, 14.3_
 
 - [ ] 17. Load testing and final polish
-  - [ ] 17.1 Write K6 load tests
+  - [x] 17.1 Write K6 load tests
     - Match thread concurrent users: 1000 users posting comments simultaneously
     - Feed endpoint: 500 concurrent requests, p95 < 200ms
     - Auth endpoint: 100 concurrent logins
     - Rate limiter validation under load
     - _Requirements: N/A (performance validation)_
 
-  - [ ] 17.2 Performance optimization
+  - [x] 17.2 Performance optimization
     - Add database connection pooling (HikariCP tuning)
     - Optimize feed query with proper indexing and query plans
     - Redis pipeline for batch feed score calculations
     - Kafka producer batching for high-throughput events
     - _Requirements: 5.1, 9.2_
 
-  - [ ] 17.3 Observability setup
+  - [x] 17.3 Observability setup
     - Configure Dynatrace OneAgent integration
     - Set up Micrometer metrics: request latency, error rates, Kafka consumer lag
     - Configure structured JSON logging with traceId in MDC
     - Set up alerting: match thread latency > 3s, consumer lag > 1000, error rate > 5%
     - _Requirements: N/A (operations)_
 
-- [ ] 18. Final checkpoint — Ensure all tests pass
+- [x] 18. Final checkpoint — Ensure all tests pass
   - Run `mvn verify` across all modules
   - Run K6 load tests, verify p95 latency targets
   - Verify all services deploy to K8s via Helm

@@ -1,0 +1,149 @@
+# Default values for Fanzone umbrella chart
+
+global:
+  image:
+    registry: registry.gitlab.com
+    tag: latest
+    pullPolicy: IfNotPresent
+  postgresql:
+    host: postgresql
+    port: 5432
+    username: fanzone
+    existingSecret: fanzone-db-credentials
+  redis:
+    host: redis-master
+    port: 6379
+  kafka:
+    bootstrapServers: kafka:9092
+  jwt:
+    existingSecret: fanzone-jwt-secret
+
+# Per-service configuration
+auth-service:
+  enabled: true
+  replicaCount: 2
+  service:
+    port: 8081
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 200m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+
+feed-service:
+  enabled: true
+  replicaCount: 2
+  service:
+    port: 8082
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 200m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+
+post-service:
+  enabled: true
+  replicaCount: 2
+  service:
+    port: 8083
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 200m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+
+match-thread-service:
+  enabled: true
+  replicaCount: 2
+  service:
+    port: 8084
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 200m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+
+reputation-service:
+  enabled: true
+  replicaCount: 1
+  service:
+    port: 8085
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 384Mi
+      cpu: 300m
+
+notification-service:
+  enabled: true
+  replicaCount: 1
+  service:
+    port: 8086
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 384Mi
+      cpu: 300m
+
+moderation-service:
+  enabled: true
+  replicaCount: 1
+  service:
+    port: 8087
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 384Mi
+      cpu: 300m
+
+# Ingress
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: api.fanzone.dev
+      paths:
+        - path: /api/v1/auth
+          service: auth-service
+        - path: /api/v1/feeds
+          service: feed-service
+        - path: /api/v1/club-hubs
+          service: feed-service
+        - path: /api/v1/posts
+          service: post-service
+        - path: /api/v1/comments
+          service: post-service
+        - path: /api/v1/users
+          service: post-service
+        - path: /api/v1/matches
+          service: match-thread-service
+        - path: /api/v1/match-threads
+          service: match-thread-service
+        - path: /ws
+          service: match-thread-service
+        - path: /api/v1/moderation
+          service: moderation-service
+        - path: /api/v1/activity-feeds
+          service: notification-service
+        - path: /api/v1/notification-preferences
+          service: notification-service
+  tls:
+    - secretName: fanzone-tls
+      hosts:
+        - api.fanzone.dev

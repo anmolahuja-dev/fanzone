@@ -1,0 +1,29 @@
+apiVersion: v2
+name: fanzone
+description: Fanzone MVP - Football-first social platform
+type: application
+version: 0.1.0
+appVersion: "0.0.1-SNAPSHOT"
+
+dependencies:
+  - name: auth-service
+    version: 0.1.0
+    condition: auth-service.enabled
+  - name: feed-service
+    version: 0.1.0
+    condition: feed-service.enabled
+  - name: post-service
+    version: 0.1.0
+    condition: post-service.enabled
+  - name: match-thread-service
+    version: 0.1.0
+    condition: match-thread-service.enabled
+  - name: reputation-service
+    version: 0.1.0
+    condition: reputation-service.enabled
+  - name: notification-service
+    version: 0.1.0
+    condition: notification-service.enabled
+  - name: moderation-service
+    version: 0.1.0
+    condition: moderation-service.enabled

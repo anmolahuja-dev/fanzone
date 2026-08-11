@@ -1,0 +1,134 @@
+stages:
+  - build
+  - test
+  - package
+  - deploy
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  DOCKER_REGISTRY: ${CI_REGISTRY}
+  DOCKER_IMAGE_PREFIX: ${CI_REGISTRY_IMAGE}
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .m2/repository/
+
+# ============================================================
+# BUILD STAGE
+# ============================================================
+build:
+  stage: build
+  image: eclipse-temurin:21-jdk
+  script:
+    - mvn -s .m2/settings.xml clean compile -T 1C
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# ============================================================
+# TEST STAGE
+# ============================================================
+test:
+  stage: test
+  image: eclipse-temurin:21-jdk
+  services:
+    - name: postgres:16
+      alias: postgres
+      variables:
+        POSTGRES_USER: fanzone
+        POSTGRES_PASSWORD: fanzone
+        POSTGRES_DB: fanzone_test
+    - name: redis:7-alpine
+      alias: redis
+  variables:
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fanzone_test
+    SPRING_DATASOURCE_USERNAME: fanzone
+    SPRING_DATASOURCE_PASSWORD: fanzone
+    SPRING_DATA_REDIS_HOST: redis
+  script:
+    - mvn -s .m2/settings.xml verify -T 1C
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - "**/target/surefire-reports/TEST-*.xml"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# ============================================================
+# PACKAGE STAGE — Docker build + push per service
+# ============================================================
+.package_template: &package_template
+  stage: package
+  image: docker:24
+  services:
+    - docker:24-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+package:auth-service:
+  <<: *package_template
+  script:
+    - docker build -t $DOCKER_IMAGE_PREFIX/auth-service:$CI_COMMIT_SHORT_SHA auth-service/
+    - docker push $DOCKER_IMAGE_PREFIX/auth-service:$CI_COMMIT_SHORT_SHA
+
+package:feed-service:
+  <<: *package_template
+  script:
+    - docker build -t $DOCKER_IMAGE_PREFIX/feed-service:$CI_COMMIT_SHORT_SHA feed-service/
+    - docker push $DOCKER_IMAGE_PREFIX/feed-service:$CI_COMMIT_SHORT_SHA
+
+package:post-service:
+  <<: *package_template
+  script:
+    - docker build -t $DOCKER_IMAGE_PREFIX/post-service:$CI_COMMIT_SHORT_SHA post-service/
+    - docker push $DOCKER_IMAGE_PREFIX/post-service:$CI_COMMIT_SHORT_SHA
+
+package:match-thread-service:
+  <<: *package_template
+  script:
+    - docker build -t $DOCKER_IMAGE_PREFIX/match-thread-service:$CI_COMMIT_SHORT_SHA match-thread-service/
+    - docker push $DOCKER_IMAGE_PREFIX/match-thread-service:$CI_COMMIT_SHORT_SHA
+
+package:reputation-service:
+  <<: *package_template
+  script:
+    - docker build -t $DOCKER_IMAGE_PREFIX/reputation-service:$CI_COMMIT_SHORT_SHA reputation-service/
+    - docker push $DOCKER_IMAGE_PREFIX/reputation-service:$CI_COMMIT_SHORT_SHA
+
+package:notification-service:
+  <<: *package_template
+  script:
+    - docker build -t $DOCKER_IMAGE_PREFIX/notification-service:$CI_COMMIT_SHORT_SHA notification-service/
+    - docker push $DOCKER_IMAGE_PREFIX/notification-service:$CI_COMMIT_SHORT_SHA
+
+package:moderation-service:
+  <<: *package_template
+  script:
+    - docker build -t $DOCKER_IMAGE_PREFIX/moderation-service:$CI_COMMIT_SHORT_SHA moderation-service/
+    - docker push $DOCKER_IMAGE_PREFIX/moderation-service:$CI_COMMIT_SHORT_SHA
+
+# ============================================================
+# DEPLOY STAGE — Helm upgrade to target environment
+# ============================================================
+.deploy_template: &deploy_template
+  stage: deploy
+  image: alpine/helm:3.14
+  before_script:
+    - helm repo update
+
+deploy:staging:
+  <<: *deploy_template
+  script:
+    - helm upgrade --install fanzone helm/fanzone/
+      --namespace fanzone-staging --create-namespace
+      -f helm/fanzone/values-staging.yaml
+      --set global.image.tag=$CI_COMMIT_SHORT_SHA
+  environment:
+    name: staging
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
