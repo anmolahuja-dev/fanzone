@@ -12,4 +12,6 @@ public interface ProfileService {
     UserProfileResponse updateUsername(UUID userId, String newUsername);
 
     String uploadAvatar(UUID userId, MultipartFile file);
+
+    void setThemePreference(UUID userId, String theme);
 }

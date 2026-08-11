@@ -1,6 +1,7 @@
 package com.fanzone.post.controller;
 
 import com.fanzone.common.security.UserPrincipal;
+import com.fanzone.post.dto.SetThemeRequest;
 import com.fanzone.post.dto.UpdateProfileRequest;
 import com.fanzone.post.dto.UserProfileResponse;
 import com.fanzone.post.service.FollowService;
@@ -100,5 +101,17 @@ public class UserController {
 
         followService.unfollow(principal.getUserId(), userId);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Set theme preference (light, dark, or system).
+     */
+    @PutMapping("/me/theme")
+    public ResponseEntity<Void> setTheme(
+            @AuthenticationPrincipal UserPrincipal principal,
+            @Valid @RequestBody SetThemeRequest request) {
+
+        profileService.setThemePreference(principal.getUserId(), request.theme());
+        return ResponseEntity.ok().build();
     }
 }

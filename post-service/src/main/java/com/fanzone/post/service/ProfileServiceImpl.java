@@ -104,4 +104,12 @@ public class ProfileServiceImpl implements ProfileService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("USER_NOT_FOUND", "User not found"));
     }
+
+    @Override
+    public void setThemePreference(UUID userId, String theme) {
+        UserEntity user = findUserOrThrow(userId);
+        user.setThemePreference(theme);
+        userRepository.save(user);
+        log.info("User {} set theme to {}", userId, theme);
+    }
 }

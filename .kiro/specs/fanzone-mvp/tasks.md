@@ -426,7 +426,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Generate random sequences of arrivals and feed-opens; verify badge = count since last open, reset to 0 on open
     - **Validates: Requirements 21.5**
 
-- [ ] 14. Checkpoint — Ensure all tests pass
+- [x] 14. Checkpoint — Ensure all tests pass
   - Run `mvn verify` across all modules
   - Verify all services start and serve health checks
   - Verify Kafka event flows end-to-end: post → moderation → publish → reputation → notification
@@ -434,7 +434,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
   - Ask the user if questions arise
 
 - [ ] 15. Implement Club Hub and remaining features
-  - [ ] 15.1 Implement Club Hub endpoint
+  - [x] 15.1 Implement Club Hub endpoint
     - `GET /api/v1/club-hubs/{clubId}` — returns aggregated club data
     - Sections: news, matchday, discussions, transfers, memes, tactical (10 most recent posts per section, filtered by post content/tags)
     - Include live/upcoming match thread info when match within 24h
@@ -443,13 +443,13 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Return empty arrays for sections with no content
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7_
 
-  - [ ] 15.2 Implement club theme endpoint
+  - [x] 15.2 Implement club theme endpoint
     - `GET /api/v1/clubs/{clubId}/theme` — returns club colors for client theming
     - Return `primaryColor`, `secondaryColor` (hex strings)
     - Return null/default if club has no defined theme
     - _Requirements: 19.1, 19.2, 19.3, 19.4, 19.5, 19.6, 20.1, 20.2, 20.3, 20.4, 20.5, 20.6_
 
-  - [ ] 15.3 Implement settings endpoints
+  - [x] 15.3 Implement settings endpoints
     - `PUT /api/v1/users/me/theme` — set theme preference (light, dark, system)
     - `PUT /api/v1/users/me/club` — change favorite club (updates theme context)
     - _Requirements: 19.3, 19.6, 20.6_
