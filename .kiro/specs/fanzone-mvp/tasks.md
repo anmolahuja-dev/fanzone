@@ -300,39 +300,39 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 14.1, 14.2, 14.4, 14.5, 14.6, 16.1, 16.2, 16.3, 16.4, 16.5, 16.6, 16.7_
 
 - [ ] 11. Implement Match Thread system (match-thread-service)
-  - [ ] 11.1 Implement MatchThreadService with phase management
+  - [x] 11.1 Implement MatchThreadService with phase management
     - Create `MatchThreadService` with `getMatchThread()`, `submitComment()`, `submitPlayerRating()`, `submitGoalReaction()`, `calculateMotm()`
     - Enforce monotonic phase transitions: scheduled → live → finished (never backward)
     - Implement rate limiter: max 20 comments per user per 60-second rolling window (Redis sorted set)
     - Implement 48-hour post-match timeout (thread becomes read-only, reject comments with 422)
     - _Requirements: 9.1, 9.8, 10.1, 10.7_
 
-  - [ ]* 11.2 Write property tests for match phase monotonicity (Property 9)
+  - [x]* 11.2 Write property tests for match phase monotonicity (Property 9)
     - Generate random sequences of status change attempts; verify only forward transitions succeed
     - **Validates: Requirements 9.1, 10.1**
 
-  - [ ]* 11.3 Write property tests for rate limiting (Property 11)
+  - [x]* 11.3 Write property tests for rate limiting (Property 11)
     - Generate random comment timestamps within windows; verify max 20 per 60s, 21st rejected
     - **Validates: Requirements 9.8**
 
-  - [ ]* 11.4 Write property tests for post-match timeout (Property 13)
+  - [x]* 11.4 Write property tests for post-match timeout (Property 13)
     - Generate random timestamps relative to finished_at; verify comments accepted iff within 48h
     - **Validates: Requirements 10.7**
 
-  - [ ] 11.5 Implement player ratings and MOTM calculation
+  - [x] 11.5 Implement player ratings and MOTM calculation
     - `submitPlayerRating()`: integer 1-10, one per user per player per match, upsert on resubmit (UNIQUE constraint)
     - `calculateMotm()`: highest average rating when >= 10 total ratings; top-3 ordered by avg desc, ties broken by count desc
     - _Requirements: 9.5, 10.3, 10.4, 10.6_
 
-  - [ ]* 11.6 Write property tests for player rating bounds (Property 10)
+  - [x]* 11.6 Write property tests for player rating bounds (Property 10)
     - Generate random integers and player-user-match combos; verify accepted iff 1-10, upsert behavior
     - **Validates: Requirements 9.5**
 
-  - [ ]* 11.7 Write property tests for MOTM calculation (Property 12)
+  - [x]* 11.7 Write property tests for MOTM calculation (Property 12)
     - Generate random rating sets; verify MOTM = highest avg when >=10 ratings, correct tie-breaking, null when <10
     - **Validates: Requirements 10.3, 10.4, 10.6**
 
-  - [ ] 11.8 Implement WebSocket (STOMP) for live match threads
+  - [x] 11.8 Implement WebSocket (STOMP) for live match threads
     - Configure Spring WebSocket with STOMP protocol
     - Subscription endpoint: `/topic/match-threads/{matchId}`
     - Broadcast new comments to all subscribers within 3 seconds
@@ -341,7 +341,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Implement goal reaction prompts: broadcast `GoalScoredEvent` with 30-second display window
     - _Requirements: 8.4, 8.5, 9.1, 9.2, 9.3, 9.4, 9.7_
 
-  - [ ] 11.9 Implement Match Thread REST endpoints
+  - [x] 11.9 Implement Match Thread REST endpoints
     - `GET /api/v1/matches` — list upcoming/live matches for user's club
     - `GET /api/v1/matches/{matchId}` — match details (clubs, score, status, time)
     - `GET /api/v1/match-threads/{matchId}/comments` — paginated comments (cursor)
