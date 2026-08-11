@@ -352,7 +352,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 8.1, 8.2, 8.3, 9.1, 9.5, 9.6, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7_
 
 - [ ] 12. Implement Toxicity Shield (moderation-service)
-  - [ ] 12.1 Implement OpenAI moderation client
+  - [x] 12.1 Implement OpenAI moderation client
     - Create `OpenAiModerationClient` using Spring WebClient
     - Call OpenAI moderation endpoint with 2-second timeout
     - Return `ToxicityResult` with `isToxic`, `reason`, `confidence`
@@ -360,14 +360,14 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Configure Resilience4j circuit breaker for OpenAI calls
     - _Requirements: 12.1, 12.5, 12.6, 12.7_
 
-  - [ ] 12.2 Implement moderation REST endpoint
+  - [x] 12.2 Implement moderation REST endpoint
     - `POST /api/v1/moderation/analyze` — called by post-service before publishing content
     - Return `ToxicityResult` to calling service
     - Do NOT flag football performance criticism without personal attacks
     - On AI failure/timeout: return safe immediately, queue for background review
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7, 12.8_
 
-  - [ ] 12.3 Implement async moderation consumer
+  - [x] 12.3 Implement async moderation consumer
     - Consume from `fanzone.moderation.requests` topic for queued reviews
     - Re-analyze content with longer timeout (10s)
     - Update post/comment `is_flagged` if toxic
@@ -375,13 +375,13 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - _Requirements: 12.7_
 
 - [ ] 13. Implement Notifications and Activity Feed (notification-service)
-  - [ ] 13.1 Implement Firebase Cloud Messaging (FCM) client
+  - [x] 13.1 Implement Firebase Cloud Messaging (FCM) client
     - Create `FcmClient` using Firebase Admin SDK for Java
     - Implement push notification dispatch with retry (3x exponential backoff)
     - Format notifications: match alert (club names + time), goal (scorer + score + minute), reply (username + 100 char preview), mention (username + 100 char preview)
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.8_
 
-  - [ ] 13.2 Implement NotificationService with preference enforcement
+  - [x] 13.2 Implement NotificationService with preference enforcement
     - Create `NotificationService` with `shouldSend()` checking user preferences
     - Default all notification types to enabled on account creation (via Liquibase default)
     - Respect per-type toggle: match_alerts, goals, replies, mentions
@@ -389,7 +389,7 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - Truncate preview text to exactly 100 characters
     - _Requirements: 13.5, 13.6, 13.7_
 
-  - [ ] 13.3 Implement Kafka consumers for notification events
+  - [x] 13.3 Implement Kafka consumers for notification events
     - Consume from `fanzone.notification.events` topic
     - Process: `CommentCreatedEvent` → reply/mention notifications
     - Process: `GoalScoredEvent` → goal push notifications to club fans
@@ -398,31 +398,31 @@ This plan implements the Fanzone MVP as a Java/Spring Boot microservices backend
     - DLQ: `fanzone.notification.events.dlq`
     - _Requirements: 13.1, 13.2, 13.3, 13.4_
 
-  - [ ]* 13.4 Write property tests for notification preference enforcement (Property 18)
+  - [x]* 13.4 Write property tests for notification preference enforcement (Property 18)
     - Generate random events × random preference configs; verify delivery iff type enabled
     - **Validates: Requirements 13.5, 13.6**
 
-  - [ ]* 13.5 Write property tests for preview truncation (Property 19)
+  - [x]* 13.5 Write property tests for preview truncation (Property 19)
     - Generate random strings 0-5000 chars; verify preview <= 100 chars, truncated at exactly 100 when over
     - **Validates: Requirements 13.3, 13.4**
 
-  - [ ] 13.6 Implement Activity Feed endpoints
+  - [x] 13.6 Implement Activity Feed endpoints
     - `GET /api/v1/activity-feeds` — paginated (20 per page, cursor), reverse chronological
     - `PUT /api/v1/activity-feeds/read` — mark all as read, reset unread badge
     - Include activity types: mentions, replies, match alerts, reputation changes
     - Return `unreadCount` in response header for badge display
     - _Requirements: 21.1, 21.2, 21.3, 21.4, 21.5, 21.6, 21.7_
 
-  - [ ] 13.7 Implement notification preferences endpoints
+  - [x] 13.7 Implement notification preferences endpoints
     - `GET /api/v1/notification-preferences` — get current preferences
     - `PUT /api/v1/notification-preferences` — update per-type toggles
     - _Requirements: 13.5, 13.6, 13.7_
 
-  - [ ]* 13.8 Write property tests for activity feed ordering (Property 21)
+  - [x]* 13.8 Write property tests for activity feed ordering (Property 21)
     - Generate random activity items with random timestamps; verify descending order
     - **Validates: Requirements 21.1**
 
-  - [ ]* 13.9 Write property tests for activity badge count (Property 22)
+  - [x]* 13.9 Write property tests for activity badge count (Property 22)
     - Generate random sequences of arrivals and feed-opens; verify badge = count since last open, reset to 0 on open
     - **Validates: Requirements 21.5**
 

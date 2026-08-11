@@ -22,3 +22,9 @@ spring:
 
 server:
   port: 8086
+
+fanzone:
+  jwt:
+    secret: ${JWT_SECRET:fanzone-dev-jwt-secret-key-change-in-production-min-32-chars}
+    access-token-expiry: PT1H
+    refresh-token-expiry: P7D
