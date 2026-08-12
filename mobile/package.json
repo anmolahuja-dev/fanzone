@@ -1,0 +1,43 @@
+{
+  "name": "fanzone-mobile",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "expo": "~52.0.0",
+    "expo-router": "~4.0.0",
+    "expo-font": "~13.0.0",
+    "expo-haptics": "~14.0.0",
+    "expo-image-picker": "~16.0.0",
+    "expo-status-bar": "~2.0.0",
+    "expo-splash-screen": "~0.29.0",
+    "react": "18.3.1",
+    "react-native": "0.76.0",
+    "react-native-reanimated": "~3.16.0",
+    "react-native-gesture-handler": "~2.20.0",
+    "react-native-safe-area-context": "~4.12.0",
+    "react-native-screens": "~4.1.0",
+    "@shopify/flash-list": "1.7.1",
+    "@react-native-community/blur": "^4.4.0",
+    "@shopify/react-native-skia": "1.5.0",
+    "moti": "0.29.0",
+    "zustand": "4.5.2",
+    "@tanstack/react-query": "5.51.0",
+    "axios": "1.7.2",
+    "@gorhom/bottom-sheet": "^5.0.0",
+    "@stompjs/stompjs": "^7.0.0",
+    "react-native-mmkv": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.0",
+    "typescript": "~5.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0"
+  }
+}
